@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Signup Page</title>
+    <style>
+        /* Basic reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000f4b, #2424e9, #5550ec);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            color: #2803a2;
+            margin-bottom: 20px;
+        }
+
+        .signup-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .signup-container input:focus {
+            border-color: #028ba9;
+            outline: none;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #9282ff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .signup-container button:hover {
+            background: #2869ae;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: green;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <div id="usernameError" class="error"></div>
+
+        <input type="email" id="email" placeholder="Email" required>
+        <div id="emailError" class="error"></div>
+
+        <input type="password" id="password" placeholder="Password" required>
+        <div id="passwordError" class="error"></div>
+
+        <button type="submit">Sign Up</button>
+        <div id="successMessage" class="success"></div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('signupForm');
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    const usernameError = document.getElementById('usernameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset errors
+        usernameError.textContent = '';
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        successMessage.textContent = '';
+
+        let valid = true;
+
+        if (username.value.length < 3) {
+            usernameError.textContent = 'Username must be at least 3 characters.';
+            valid = false;
+        }
+
+        if (!email.value.includes('@')) {
+            emailError.textContent = 'Please enter a valid email.';
+            valid = false;
+        }
+
+        if (password.value.length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters.';
+            valid = false;
+        }
+
+        if (valid) {
+            successMessage.textContent = 'Signup successful! 🎉';
+            form.reset();
+        }
+    });
+</script>
+
+</body>
+</html>
